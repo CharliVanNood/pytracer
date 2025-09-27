@@ -49,9 +49,7 @@ class Renderer:
                         100,
                         position_object
                     )
-
-                #print(color)
-                #print(light)
+                    
                 color = (int(color[0] * (1 - light)), int(color[1] * (1 - light)), int(color[2] * (1 - light)))
 
                 pygame.draw.rect(
@@ -122,8 +120,8 @@ class Renderer:
         ])
         N = direction_to_object / np.linalg.norm(direction_to_object)
         L = direction_to_light / np.linalg.norm(direction_to_light)
-        intensity = max(0, np.dot(N, L))
-        return intensity * 2
+        intensity = max(0, np.dot(N, L)) * 2
+        return min(1, intensity)
 
     def check_ray_intersects_sphere(self, ray_distance, ray_resolution, i, x, y, z, rx, ry, rz, object_radius, object_position, j, n, back_tracking):
         increment = (ray_distance / ray_resolution) * (i + j)

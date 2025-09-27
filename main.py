@@ -30,7 +30,8 @@ while running:
     #renderer.player.rotation.add(0, 1, 0)
 
     #renderer.objects[0].position.y = math.sin(frame / 10) / 5
-    renderer.objects[1].position.y = math.sin(frame / 10) / 5
+    #renderer.objects[1].position.y = math.sin(frame / 10) / 5
+    #renderer.objects[2].position.y = math.sin(frame / 10) / 5
 
     renderer.render()
     pygame.display.flip()
