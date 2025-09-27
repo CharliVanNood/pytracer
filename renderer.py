@@ -17,7 +17,7 @@ class Renderer:
 
         self.resolution = 100
         self.ray_resolution = 10
-        self.ray_distance = 10
+        self.ray_distance = 5
         self.cell_size = round(self.screen_size[0] / self.resolution)
     
     def add_object(self, object_adding):
@@ -120,7 +120,7 @@ def trace_ray_to(x, y, z, xl, yl, zl, ray_resolution, position_object, objects):
                     object_position.y, position[1],
                     object_position.z, position[2]
                     ) <= object_radius:
-                    return 1
+                    return 0.8
 
     direction_to_light = np.array([xl - x, yl - y, zl - z])
     direction_to_object = np.array([
@@ -157,8 +157,8 @@ def check_ray_intersects_sphere(ray_distance, ray_resolution, i, x, y, z, rx, ry
         else:
             return position
     return check_ray_intersects_sphere(
-                ray_distance, ray_resolution, i, x, y, z, rx, ry, rz, object_radius, object_position, j + 0.001, n + 1, True
-            )
+            ray_distance, ray_resolution, i, x, y, z, rx, ry, rz, object_radius, object_position, j + 0.001, n + 1, True
+        )
 
 def check_ray_intersects_cube(ray_distance, ray_resolution, i, x, y, z, rx, ry, rz, object_size, object_position, j, n, back_tracking):
     increment = (ray_distance / ray_resolution) * (i + j)
@@ -176,15 +176,15 @@ def check_ray_intersects_cube(ray_distance, ray_resolution, i, x, y, z, rx, ry, 
         position[1] >= object_position.y - object_size.y / 2 and position[1] <= object_position.y + object_size.y / 2 and \
         position[2] >= object_position.z - object_size.z / 2 and position[2] <= object_position.z + object_size.z / 2:
         if not back_tracking:
-            return self.check_ray_intersects_cube(
-                            ray_distance, ray_resolution, i, x, y, z, rx, ry, rz, object_size, object_position, j - 0.005, n + 1, False
-                        )
+            return check_ray_intersects_cube(
+                    ray_distance, ray_resolution, i, x, y, z, rx, ry, rz, object_size, object_position, j - 0.005, n + 1, False
+                )
         else:
             return position
 
-    return self.check_ray_intersects_cube(
-                        ray_distance, ray_resolution, i, x, y, z, rx, ry, rz, object_size, object_position, j + 0.001, n + 1, True
-                    )
+    return check_ray_intersects_cube(
+            ray_distance, ray_resolution, i, x, y, z, rx, ry, rz, object_size, object_position, j + 0.001, n + 1, True
+        )
 
 def trace_ray(x, y, z, rx, ry, rz, ray_distance, ray_resolution, objects):
     for i in range(ray_resolution):

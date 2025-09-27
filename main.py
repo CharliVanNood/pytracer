@@ -18,7 +18,8 @@ player = Player()
 renderer = Renderer(screen, screen_size, player)
 renderer.add_object(Sphere(0.4, Vector3(0, 0, 2), (255, 0, 0)))
 renderer.add_object(Sphere(0.4, Vector3(0.5, 0, 1), (0, 255, 0)))
-#renderer.add_object(Cube(Vector3(1, 1, 1), Vector3(0, 0, 1), (255, 255, 255)))
+#renderer.add_object(Sphere(0.4, Vector3(-0.6, 0.6, 1), (0, 0, 255)))
+#renderer.add_object(Cube(Vector3(0.5, 0.5, 0.5), Vector3(-0.5, 0.5, 1), (255, 255, 255)))
 
 frame = 0
 while running:
@@ -29,9 +30,8 @@ while running:
 
     #renderer.player.rotation.add(0, 1, 0)
 
-    #renderer.objects[0].position.y = math.sin(frame / 10) / 5
-    renderer.objects[1].position.y = math.sin(frame / 10) / 5
-    #renderer.objects[2].position.y = math.sin(frame / 10) / 5
+    renderer.objects[0].position.y = math.sin(frame / 10) / 5
+    renderer.objects[1].position.y = math.cos(frame / 10) / 5
 
     try:
         renderer.render()
