@@ -18,8 +18,8 @@ class Renderer:
         self.light_position = Vector3(0, 10, 2)
 
         self.resolution = 100
-        self.ray_resolution = 5
-        self.ray_distance = 5
+        self.ray_resolution = 10
+        self.ray_distance = 10
         self.cell_size = round(self.screen_size[0] / self.resolution)
     
     def add_object(self, object_adding):
