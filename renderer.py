@@ -2,8 +2,6 @@ import pygame
 import numpy as np
 import time
 
-from concurrent.futures import ThreadPoolExecutor
-from concurrent.futures import as_completed
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 from objects.vector3 import Vector3
