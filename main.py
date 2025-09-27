@@ -33,7 +33,11 @@ while running:
     renderer.objects[1].position.y = math.sin(frame / 10) / 5
     #renderer.objects[2].position.y = math.sin(frame / 10) / 5
 
-    renderer.render()
+    try:
+        renderer.render()
+    except Exception as e:
+        print(e)
+        
     pygame.display.flip()
 
     frame += 1
