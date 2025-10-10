@@ -16,7 +16,7 @@ class Renderer:
         self.light_position = Vector3(0, 10, 2)
 
         self.resolution = 100
-        self.ray_resolution = 10
+        self.ray_resolution = 20
         self.ray_distance = 5
         self.cell_size = round(self.screen_size[0] / self.resolution)
     
@@ -121,6 +121,7 @@ def trace_ray_to(x, y, z, xl, yl, zl, ray_resolution, position_object, objects):
                     object_position.z, position[2]
                     ) <= object_radius:
                     return 0.8
+                    #pass
 
     direction_to_light = np.array([xl - x, yl - y, zl - z])
     direction_to_object = np.array([
